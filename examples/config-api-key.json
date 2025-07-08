@@ -1,0 +1,8 @@
+{
+  "eportal_url": "https://your-eportal.com",
+  "auth": {
+    "type": "api_key",
+    "api_key": "your-api-key-here",
+    "header_name": "X-Api-Key"
+  }
+}

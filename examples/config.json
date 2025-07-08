@@ -1,0 +1,8 @@
+{
+  "eportal_url": "https://your-eportal.com",
+  "auth": {
+    "type": "basic",
+    "username": "admin",
+    "password": "your-password"
+  }
+}

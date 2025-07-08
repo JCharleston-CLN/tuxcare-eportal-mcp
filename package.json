@@ -1,0 +1,63 @@
+{
+  "name": "tuxcare-eportal-mcp",
+  "version": "1.0.0",
+  "description": "TuxCare ePortal MCP server for integrating with TuxCare ePortal API",
+  "main": "dist/index.js",
+  "bin": {
+    "tuxcare-eportal-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "lint": "eslint src --ext .ts,.js",
+    "lint:fix": "eslint src --ext .ts,.js --fix",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test && npm run lint"
+  },
+  "keywords": [
+    "tuxcare",
+    "eportal",
+    "mcp",
+    "model-context-protocol",
+    "kernel-care",
+    "security",
+    "patch-management",
+    "server-management"
+  ],
+  "author": "Jamie <jamie@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/tuxcare-eportal-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/tuxcare-eportal-mcp/issues"
+  },
+  "homepage": "https://github.com/your-username/tuxcare-eportal-mcp#readme",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "examples"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "axios": "^1.6.0",
+    "commander": "^11.0.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

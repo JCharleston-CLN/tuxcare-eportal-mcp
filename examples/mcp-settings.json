@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "tuxcare-eportal-mcp",
+      "args": ["--config", "/path/to/your/config.json"]
+    }
+  }
+}
