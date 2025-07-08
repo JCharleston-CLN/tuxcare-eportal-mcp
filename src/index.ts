@@ -116,7 +116,7 @@ async function main() {
   program
     .name('tuxcare-eportal-mcp')
     .description('TuxCare ePortal MCP server for ePortal API integration')
-    .version('1.0.1')
+    .version('1.0.2')
     .option('-c, --config <path>', 'Path to config file')
     .option('-u, --url <url>', 'ePortal URL')
     .option('-a, --auth-type <type>', 'Authentication type (basic|api_key)', 'basic')
@@ -180,7 +180,7 @@ async function main() {
   }
 }
 
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(console.error);
 }
 

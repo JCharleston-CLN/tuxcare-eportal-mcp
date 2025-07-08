@@ -1,7 +1,8 @@
 {
   "name": "tuxcare-eportal-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "TuxCare ePortal MCP server for integrating with TuxCare ePortal API",
+  "type": "module",
   "main": "dist/index.js",
   "bin": {
     "tuxcare-eportal-mcp": "dist/index.js"
