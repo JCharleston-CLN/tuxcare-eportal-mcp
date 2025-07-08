@@ -116,8 +116,8 @@ async function main() {
   program
     .name('tuxcare-eportal-mcp')
     .description('TuxCare ePortal MCP server for ePortal API integration')
-    .version('1.0.0')
-    .option('-c, --config <path>', 'Path to config file', './config.json')
+    .version('1.0.1')
+    .option('-c, --config <path>', 'Path to config file')
     .option('-u, --url <url>', 'ePortal URL')
     .option('-a, --auth-type <type>', 'Authentication type (basic|api_key)', 'basic')
     .option('--username <username>', 'Username for basic auth')
@@ -130,6 +130,7 @@ async function main() {
 
   let config: Config;
 
+  // Try to load config file if provided, otherwise use command line options
   if (options.config) {
     try {
       const fs = await import('fs');
