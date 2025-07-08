@@ -28,7 +28,7 @@ npx tuxcare-eportal-mcp --help
 
 ```bash
 # Install directly from GitHub
-npm install -g github:your-username/tuxcare-eportal-mcp
+npm install -g github:Revmagi/tuxcare-eportal-mcp
 ```
 
 ## Usage
@@ -221,7 +221,7 @@ The server provides comprehensive error handling:
 ### Setup
 
 ```bash
-git clone https://github.com/your-username/tuxcare-eportal-mcp.git
+git clone https://github.com/Revmagi/tuxcare-eportal-mcp.git
 cd tuxcare-eportal-mcp
 npm install
 ```
@@ -266,7 +266,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/tuxcare-eportal-mcp/issues)
+- **Issues**: [GitHub Issues](https://github.com/Revmagi/tuxcare-eportal-mcp/issues)
 - **Documentation**: [TuxCare Documentation](https://tuxcare.com/docs/)
 - **ePortal API**: See the ePortal API documentation for detailed API reference
 

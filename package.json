@@ -30,12 +30,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/tuxcare-eportal-mcp.git"
+    "url": "git+https://github.com/Revmagi/tuxcare-eportal-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/tuxcare-eportal-mcp/issues"
+    "url": "https://github.com/Revmagi/tuxcare-eportal-mcp/issues"
   },
-  "homepage": "https://github.com/your-username/tuxcare-eportal-mcp#readme",
+  "homepage": "https://github.com/Revmagi/tuxcare-eportal-mcp#readme",
   "files": [
     "dist",
     "README.md",
