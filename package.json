@@ -1,5 +1,5 @@
 {
-  "name": "tuxcare-eportal-mcp",
+  "name": "@tuxcare-se/tuxcare-eportal-mcp",
   "version": "1.0.5",
   "description": "TuxCare ePortal MCP server for integrating with TuxCare ePortal API",
   "type": "module",
@@ -27,16 +27,16 @@
     "patch-management",
     "server-management"
   ],
-  "author": "Jamie <jamie@example.com>",
+  "author": "TuxCare SE <se@tuxcare.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Revmagi/tuxcare-eportal-mcp.git"
+    "url": "git+https://github.com/JCharleston-CLN/tuxcare-eportal-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/Revmagi/tuxcare-eportal-mcp/issues"
+    "url": "https://github.com/JCharleston-CLN/tuxcare-eportal-mcp/issues"
   },
-  "homepage": "https://github.com/Revmagi/tuxcare-eportal-mcp#readme",
+  "homepage": "https://github.com/JCharleston-CLN/tuxcare-eportal-mcp#readme",
   "files": [
     "dist",
     "README.md",

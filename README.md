@@ -18,7 +18,7 @@ A Model Context Protocol (MCP) server for integrating with TuxCare ePortal API. 
 
 ```bash
 # Install globally from npm
-npm install -g tuxcare-eportal-mcp
+npm install -g @tuxcare-se/tuxcare-eportal-mcp
 
 # Verify installation
 tuxcare-eportal-mcp --help
@@ -28,20 +28,20 @@ tuxcare-eportal-mcp --help
 
 ```bash
 # Run directly with npx
-npx tuxcare-eportal-mcp --help
+npx @tuxcare-se/tuxcare-eportal-mcp --help
 
 # Use in MCP configuration with npx
-npx tuxcare-eportal-mcp --url https://your-eportal.com --auth-type basic --username admin --password secret
+npx @tuxcare-se/tuxcare-eportal-mcp --url https://your-eportal.com --auth-type basic --username admin --password secret
 ```
 
 ### Option 3: GitHub Installation
 
 ```bash
 # Install directly from GitHub
-npm install -g github:Revmagi/tuxcare-eportal-mcp
+npm install -g github:JCharleston-CLN/tuxcare-eportal-mcp
 
 # Or clone and install locally
-git clone https://github.com/Revmagi/tuxcare-eportal-mcp.git
+git clone https://github.com/JCharleston-CLN/tuxcare-eportal-mcp.git
 cd tuxcare-eportal-mcp
 npm install
 npm run build
@@ -170,7 +170,7 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
     "tuxcare-eportal": {
       "command": "npx",
       "args": [
-        "tuxcare-eportal-mcp@1.0.4",
+        "@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5",
         "--url", "https://your-eportal.com",
         "--auth-type", "basic",
         "--username", "admin",
@@ -188,7 +188,7 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
     "tuxcare-eportal": {
       "command": "npx",
       "args": [
-        "tuxcare-eportal-mcp@1.0.4",
+        "@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5",
         "--url", "https://your-eportal.com",
         "--auth-type", "api_key",
         "--api-key", "your-api-key"
@@ -205,7 +205,7 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
     "tuxcare-eportal": {
       "command": "npx",
       "args": [
-        "tuxcare-eportal-mcp@1.0.4",
+        "@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5",
         "--url", "https://your-eportal.com",
         "--auth-type", "api_key",
         "--api-key", "your-api-key",
@@ -224,7 +224,7 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
   "mcpServers": {
     "tuxcare-eportal": {
       "command": "npx",
-      "args": ["tuxcare-eportal-mcp@1.0.4"],
+      "args": ["@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5"],
       "env": {
         "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
         "TUXCARE_AUTH_TYPE": "basic",
@@ -242,7 +242,7 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
   "mcpServers": {
     "tuxcare-eportal": {
       "command": "npx",
-      "args": ["tuxcare-eportal-mcp@1.0.4"],
+      "args": ["@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5"],
       "env": {
         "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
         "TUXCARE_AUTH_TYPE": "api_key",
@@ -259,7 +259,7 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
   "mcpServers": {
     "tuxcare-eportal": {
       "command": "npx",
-      "args": ["tuxcare-eportal-mcp@1.0.4"],
+      "args": ["@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5"],
       "env": {
         "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
         "TUXCARE_AUTH_TYPE": "api_key",
@@ -325,13 +325,13 @@ For any MCP client, use this format:
 Generate a configuration file interactively:
 ```bash
 # Create config file with prompts
-npx tuxcare-eportal-mcp --setup
+npx @tuxcare-se/tuxcare-eportal-mcp --setup
 
 # Create config file with basic auth
-npx tuxcare-eportal-mcp --setup --url https://your-eportal.com --auth-type basic
+npx @tuxcare-se/tuxcare-eportal-mcp --setup --url https://your-eportal.com --auth-type basic
 
 # Create config file with API key
-npx tuxcare-eportal-mcp --setup --url https://your-eportal.com --auth-type api_key
+npx @tuxcare-se/tuxcare-eportal-mcp --setup --url https://your-eportal.com --auth-type api_key
 ```
 
 ### Test Configuration
@@ -495,10 +495,10 @@ curl -H "X-Api-Key: your-key" https://your-eportal.com/api/v1/servers
 #### Configuration Issues
 ```bash
 # Validate configuration file
-npx tuxcare-eportal-mcp --config ./config.json --validate
+npx @tuxcare-se/tuxcare-eportal-mcp --config ./config.json --validate
 
 # Show current configuration
-npx tuxcare-eportal-mcp --config ./config.json --show-config
+npx @tuxcare-se/tuxcare-eportal-mcp --config ./config.json --show-config
 ```
 
 ### Debug Mode
@@ -526,7 +526,7 @@ The server provides comprehensive error handling:
 ### Setup
 
 ```bash
-git clone https://github.com/Revmagi/tuxcare-eportal-mcp.git
+git clone https://github.com/JCharleston-CLN/tuxcare-eportal-mcp.git
 cd tuxcare-eportal-mcp
 npm install
 ```
@@ -571,7 +571,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/Revmagi/tuxcare-eportal-mcp/issues)
+- **Issues**: [GitHub Issues](https://github.com/JCharleston-CLN/tuxcare-eportal-mcp/issues)
 - **Documentation**: [TuxCare Documentation](https://tuxcare.com/docs/)
 - **ePortal API**: See the ePortal API documentation for detailed API reference
 
