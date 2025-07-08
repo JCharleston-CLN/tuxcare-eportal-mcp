@@ -163,14 +163,14 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
 
 #### Method 2: Using Command Line Arguments (No Config File)
 
-Add to your Claude Code MCP settings:
+**Basic Authentication:**
 ```json
 {
   "mcpServers": {
     "tuxcare-eportal": {
       "command": "npx",
       "args": [
-        "tuxcare-eportal-mcp",
+        "tuxcare-eportal-mcp@1.0.4",
         "--url", "https://your-eportal.com",
         "--auth-type", "basic",
         "--username", "admin",
@@ -181,33 +181,95 @@ Add to your Claude Code MCP settings:
 }
 ```
 
-#### Method 3: Using Environment Variables
+**API Key Authentication:**
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "npx",
+      "args": [
+        "tuxcare-eportal-mcp@1.0.4",
+        "--url", "https://your-eportal.com",
+        "--auth-type", "api_key",
+        "--api-key", "your-api-key"
+      ]
+    }
+  }
+}
+```
 
-1. Set environment variables in your shell:
-   ```bash
-   export TUXCARE_EPORTAL_URL="https://your-eportal.com"
-   export TUXCARE_AUTH_TYPE="basic"
-   export TUXCARE_USERNAME="admin"
-   export TUXCARE_PASSWORD="your-password"
-   ```
+**API Key with Custom Header:**
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "npx",
+      "args": [
+        "tuxcare-eportal-mcp@1.0.4",
+        "--url", "https://your-eportal.com",
+        "--auth-type", "api_key",
+        "--api-key", "your-api-key",
+        "--header-name", "X-API-Key"
+      ]
+    }
+  }
+}
+```
 
-2. Add to Claude Code MCP settings:
-   ```json
-   {
-     "mcpServers": {
-       "tuxcare-eportal": {
-         "command": "npx",
-         "args": ["tuxcare-eportal-mcp"],
-         "env": {
-           "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
-           "TUXCARE_AUTH_TYPE": "basic",
-           "TUXCARE_USERNAME": "admin",
-           "TUXCARE_PASSWORD": "your-password"
-         }
-       }
-     }
-   }
-   ```
+#### Method 3: Using Environment Variables (Most Secure)
+
+**Basic Authentication:**
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "npx",
+      "args": ["tuxcare-eportal-mcp@1.0.4"],
+      "env": {
+        "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
+        "TUXCARE_AUTH_TYPE": "basic",
+        "TUXCARE_USERNAME": "admin",
+        "TUXCARE_PASSWORD": "your-password"
+      }
+    }
+  }
+}
+```
+
+**API Key Authentication:**
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "npx",
+      "args": ["tuxcare-eportal-mcp@1.0.4"],
+      "env": {
+        "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
+        "TUXCARE_AUTH_TYPE": "api_key",
+        "TUXCARE_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
+**API Key with Custom Header:**
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "npx",
+      "args": ["tuxcare-eportal-mcp@1.0.4"],
+      "env": {
+        "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
+        "TUXCARE_AUTH_TYPE": "api_key",
+        "TUXCARE_API_KEY": "your-api-key",
+        "TUXCARE_HEADER_NAME": "X-API-Key"
+      }
+    }
+  }
+}
+```
 
 ### Continue.dev Configuration
 

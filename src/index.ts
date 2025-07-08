@@ -39,7 +39,7 @@ class TuxCareEPortalMCP {
     this.server = new Server(
       {
         name: 'tuxcare-eportal-mcp',
-        version: '1.0.3'
+        version: '1.0.5'
       },
       {
         capabilities: {
@@ -121,7 +121,7 @@ async function main() {
   program
     .name('tuxcare-eportal-mcp')
     .description('TuxCare ePortal MCP server for ePortal API integration')
-    .version('1.0.3')
+    .version('1.0.5')
     .option('-c, --config <path>', 'Path to config file')
     .option('-u, --url <url>', 'ePortal URL')
     .option('-a, --auth-type <type>', 'Authentication type (basic|api_key)', 'basic')
@@ -135,7 +135,7 @@ async function main() {
 
   let config: Config;
 
-  // Try to load config file if provided, otherwise use command line options
+  // Try to load config file if provided, otherwise use command line options or environment variables
   if (options.config) {
     try {
       const fs = await import('fs');
@@ -146,32 +146,41 @@ async function main() {
       process.exit(1);
     }
   } else {
-    // Build config from command line options
-    if (!options.url) {
-      console.error('ePortal URL is required. Use --url or provide a config file.');
+    // Build config from command line options or environment variables
+    const url = options.url || process.env.TUXCARE_EPORTAL_URL;
+    const authType = options.authType || process.env.TUXCARE_AUTH_TYPE || 'basic';
+    
+    if (!url) {
+      console.error('ePortal URL is required. Use --url, provide a config file, or set TUXCARE_EPORTAL_URL environment variable.');
       process.exit(1);
     }
 
-    const authConfig: any = { type: options.authType };
+    const authConfig: any = { type: authType };
     
-    if (options.authType === 'basic') {
-      if (!options.username || !options.password) {
-        console.error('Username and password are required for basic auth');
+    if (authType === 'basic') {
+      const username = options.username || process.env.TUXCARE_USERNAME;
+      const password = options.password || process.env.TUXCARE_PASSWORD;
+      
+      if (!username || !password) {
+        console.error('Username and password are required for basic auth. Use --username/--password or TUXCARE_USERNAME/TUXCARE_PASSWORD environment variables.');
         process.exit(1);
       }
-      authConfig.username = options.username;
-      authConfig.password = options.password;
-    } else if (options.authType === 'api_key') {
-      if (!options.apiKey) {
-        console.error('API key is required for api_key auth');
+      authConfig.username = username;
+      authConfig.password = password;
+    } else if (authType === 'api_key') {
+      const apiKey = options.apiKey || process.env.TUXCARE_API_KEY;
+      const headerName = options.headerName || process.env.TUXCARE_HEADER_NAME;
+      
+      if (!apiKey) {
+        console.error('API key is required for api_key auth. Use --api-key or TUXCARE_API_KEY environment variable.');
         process.exit(1);
       }
-      authConfig.api_key = options.apiKey;
-      authConfig.header_name = options.headerName;
+      authConfig.api_key = apiKey;
+      authConfig.header_name = headerName;
     }
 
     config = {
-      eportal_url: options.url,
+      eportal_url: url,
       auth: authConfig
     };
   }
@@ -188,8 +197,13 @@ async function main() {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(console.error);
-}
+// Debug: Check if module is loading
+console.error('TuxCare ePortal MCP module loaded');
+
+// Always run main for MCP server
+main().catch((error) => {
+  console.error('Fatal error in main:', error);
+  process.exit(1);
+});
 
 export { TuxCareEPortalMCP, ConfigSchema };
