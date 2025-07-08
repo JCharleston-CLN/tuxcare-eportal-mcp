@@ -39,7 +39,7 @@ class TuxCareEPortalMCP {
     this.server = new Server(
       {
         name: 'tuxcare-eportal-mcp',
-        version: '1.0.0'
+        version: '1.0.3'
       },
       {
         capabilities: {
@@ -105,8 +105,13 @@ class TuxCareEPortalMCP {
   }
 
   async start() {
-    const transport = new StdioServerTransport();
-    await this.server.connect(transport);
+    try {
+      const transport = new StdioServerTransport();
+      await this.server.connect(transport);
+    } catch (error) {
+      console.error('Error starting MCP server:', error);
+      throw error;
+    }
   }
 }
 
@@ -116,7 +121,7 @@ async function main() {
   program
     .name('tuxcare-eportal-mcp')
     .description('TuxCare ePortal MCP server for ePortal API integration')
-    .version('1.0.2')
+    .version('1.0.3')
     .option('-c, --config <path>', 'Path to config file')
     .option('-u, --url <url>', 'ePortal URL')
     .option('-a, --auth-type <type>', 'Authentication type (basic|api_key)', 'basic')
@@ -172,8 +177,11 @@ async function main() {
   }
 
   try {
+    console.error('Starting TuxCare ePortal MCP server...');
     const server = new TuxCareEPortalMCP(config);
+    console.error('Server created, starting connection...');
     await server.start();
+    console.error('Server started successfully');
   } catch (error) {
     console.error('Error starting server:', error);
     process.exit(1);
