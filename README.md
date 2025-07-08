@@ -12,44 +12,57 @@ A Model Context Protocol (MCP) server for integrating with TuxCare ePortal API. 
 - **Server Tagging**: Set and manage server tags
 - **Flexible Authentication**: Support for basic auth and API keys
 
-## Installation
+## Installation Options
 
-### Via npm (Recommended)
+### Option 1: NPM Global Installation (Recommended)
 
 ```bash
-# Install globally
+# Install globally from npm
 npm install -g tuxcare-eportal-mcp
 
-# Or use npx for one-time usage
-npx tuxcare-eportal-mcp --help
+# Verify installation
+tuxcare-eportal-mcp --help
 ```
 
-### Via GitHub
+### Option 2: NPX (No Installation Required)
+
+```bash
+# Run directly with npx
+npx tuxcare-eportal-mcp --help
+
+# Use in MCP configuration with npx
+npx tuxcare-eportal-mcp --url https://your-eportal.com --auth-type basic --username admin --password secret
+```
+
+### Option 3: GitHub Installation
 
 ```bash
 # Install directly from GitHub
 npm install -g github:Revmagi/tuxcare-eportal-mcp
+
+# Or clone and install locally
+git clone https://github.com/Revmagi/tuxcare-eportal-mcp.git
+cd tuxcare-eportal-mcp
+npm install
+npm run build
+npm link
 ```
 
-## Usage
+## Configuration Guide
 
-### Command Line
+### Configuration Methods
 
-```bash
-# Using config file
-tuxcare-eportal-mcp --config ./config.json
+You can configure the MCP server in three ways:
 
-# Using command line options
-tuxcare-eportal-mcp --url https://your-eportal.com --auth-type basic --username admin --password secret
+1. **Configuration File** (recommended for permanent setups)
+2. **Command Line Arguments** (good for testing and Claude Code)
+3. **Environment Variables** (for containerized deployments)
 
-# Using API key authentication
-tuxcare-eportal-mcp --url https://your-eportal.com --auth-type api_key --api-key your-api-key
-```
+### Method 1: Configuration File
 
-### Configuration File
+Create a configuration file in JSON format:
 
-Create a `config.json` file:
-
+**Basic Authentication Example (`config.json`):**
 ```json
 {
   "eportal_url": "https://your-eportal.com",
@@ -61,8 +74,7 @@ Create a `config.json` file:
 }
 ```
 
-For API key authentication:
-
+**API Key Authentication Example (`config.json`):**
 ```json
 {
   "eportal_url": "https://your-eportal.com",
@@ -74,10 +86,165 @@ For API key authentication:
 }
 ```
 
-### MCP Client Configuration
+#### Configuration File Locations
 
-Add to your MCP client settings:
+The server looks for configuration files in the following order:
 
+1. **Specified path**: `--config /path/to/config.json`
+2. **Current directory**: `./config.json`
+3. **Home directory**: `~/.tuxcare-eportal-mcp/config.json`
+4. **System directory**: `/etc/tuxcare-eportal-mcp/config.json`
+
+### Method 2: Command Line Arguments
+
+You can pass all configuration via command line arguments:
+
+```bash
+# Basic authentication
+tuxcare-eportal-mcp \
+  --url https://your-eportal.com \
+  --auth-type basic \
+  --username admin \
+  --password your-password
+
+# API key authentication
+tuxcare-eportal-mcp \
+  --url https://your-eportal.com \
+  --auth-type api_key \
+  --api-key your-api-key \
+  --header-name X-Api-Key
+```
+
+### Method 3: Environment Variables
+
+Set environment variables for secure configuration:
+
+```bash
+export TUXCARE_EPORTAL_URL="https://your-eportal.com"
+export TUXCARE_AUTH_TYPE="basic"
+export TUXCARE_USERNAME="admin"
+export TUXCARE_PASSWORD="your-password"
+
+# Or for API key
+export TUXCARE_AUTH_TYPE="api_key"
+export TUXCARE_API_KEY="your-api-key"
+export TUXCARE_HEADER_NAME="X-Api-Key"
+```
+
+## MCP Client Configuration
+
+### Claude Code Configuration
+
+#### Method 1: Using Configuration File
+
+1. Create a config file in your project directory:
+   ```json
+   {
+     "eportal_url": "https://your-eportal.com",
+     "auth": {
+       "type": "basic",
+       "username": "admin",
+       "password": "your-password"
+     }
+   }
+   ```
+
+2. Add to your Claude Code MCP settings:
+   ```json
+   {
+     "mcpServers": {
+       "tuxcare-eportal": {
+         "command": "npx",
+         "args": ["tuxcare-eportal-mcp", "--config", "./config.json"]
+       }
+     }
+   }
+   ```
+
+#### Method 2: Using Command Line Arguments (No Config File)
+
+Add to your Claude Code MCP settings:
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "npx",
+      "args": [
+        "tuxcare-eportal-mcp",
+        "--url", "https://your-eportal.com",
+        "--auth-type", "basic",
+        "--username", "admin",
+        "--password", "your-password"
+      ]
+    }
+  }
+}
+```
+
+#### Method 3: Using Environment Variables
+
+1. Set environment variables in your shell:
+   ```bash
+   export TUXCARE_EPORTAL_URL="https://your-eportal.com"
+   export TUXCARE_AUTH_TYPE="basic"
+   export TUXCARE_USERNAME="admin"
+   export TUXCARE_PASSWORD="your-password"
+   ```
+
+2. Add to Claude Code MCP settings:
+   ```json
+   {
+     "mcpServers": {
+       "tuxcare-eportal": {
+         "command": "npx",
+         "args": ["tuxcare-eportal-mcp"],
+         "env": {
+           "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
+           "TUXCARE_AUTH_TYPE": "basic",
+           "TUXCARE_USERNAME": "admin",
+           "TUXCARE_PASSWORD": "your-password"
+         }
+       }
+     }
+   }
+   ```
+
+### Continue.dev Configuration
+
+Add to your `continue.json`:
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "npx",
+      "args": ["tuxcare-eportal-mcp", "--config", "./config.json"]
+    }
+  }
+}
+```
+
+### Cline Configuration
+
+Add to your MCP settings:
+```json
+{
+  "mcpServers": {
+    "tuxcare-eportal": {
+      "command": "tuxcare-eportal-mcp",
+      "args": [
+        "--url", "https://your-eportal.com",
+        "--auth-type", "basic",
+        "--username", "admin",
+        "--password", "your-password"
+      ]
+    }
+  }
+}
+```
+
+### Generic MCP Client Configuration
+
+For any MCP client, use this format:
 ```json
 {
   "mcpServers": {
@@ -87,6 +254,33 @@ Add to your MCP client settings:
     }
   }
 }
+```
+
+## Configuration Setup Commands
+
+### Quick Setup Command
+
+Generate a configuration file interactively:
+```bash
+# Create config file with prompts
+npx tuxcare-eportal-mcp --setup
+
+# Create config file with basic auth
+npx tuxcare-eportal-mcp --setup --url https://your-eportal.com --auth-type basic
+
+# Create config file with API key
+npx tuxcare-eportal-mcp --setup --url https://your-eportal.com --auth-type api_key
+```
+
+### Test Configuration
+
+Verify your configuration works:
+```bash
+# Test with config file
+tuxcare-eportal-mcp --config ./config.json --test
+
+# Test with command line args
+tuxcare-eportal-mcp --url https://your-eportal.com --auth-type basic --username admin --password secret --test
 ```
 
 ## Available Tools
@@ -120,7 +314,7 @@ Add to your MCP client settings:
 
 - `list_users`: List all ePortal users
 
-## Tool Examples
+## Tool Usage Examples
 
 ### List Servers
 
@@ -181,8 +375,6 @@ await callTool("set_server_tags", {
 
 ## Authentication
 
-The server supports two authentication methods:
-
 ### Basic Authentication
 
 ```json
@@ -205,6 +397,57 @@ The server supports two authentication methods:
     "header_name": "X-Api-Key"
   }
 }
+```
+
+## Security Best Practices
+
+1. **Never commit credentials** to version control
+2. **Use environment variables** for sensitive data
+3. **Restrict file permissions** on config files: `chmod 600 config.json`
+4. **Use API keys** instead of passwords when possible
+5. **Rotate credentials** regularly
+6. **Use HTTPS** for all ePortal connections
+
+## Troubleshooting
+
+### Common Issues
+
+#### Connection Errors
+```bash
+# Test connection
+curl -v https://your-eportal.com/api/v1/servers
+
+# Check DNS resolution
+nslookup your-eportal.com
+```
+
+#### Authentication Failures
+```bash
+# Test basic auth
+curl -u username:password https://your-eportal.com/api/v1/servers
+
+# Test API key
+curl -H "X-Api-Key: your-key" https://your-eportal.com/api/v1/servers
+```
+
+#### Configuration Issues
+```bash
+# Validate configuration file
+npx tuxcare-eportal-mcp --config ./config.json --validate
+
+# Show current configuration
+npx tuxcare-eportal-mcp --config ./config.json --show-config
+```
+
+### Debug Mode
+
+Enable debug logging:
+```bash
+# Debug mode
+DEBUG=tuxcare:* tuxcare-eportal-mcp --config ./config.json
+
+# Verbose output
+tuxcare-eportal-mcp --config ./config.json --verbose
 ```
 
 ## Error Handling
