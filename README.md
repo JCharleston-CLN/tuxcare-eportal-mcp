@@ -115,21 +115,6 @@ tuxcare-eportal-mcp \
   --header-name X-Api-Key
 ```
 
-### Method 3: Environment Variables
-
-Set environment variables for secure configuration:
-
-```bash
-export TUXCARE_EPORTAL_URL="https://your-eportal.com"
-export TUXCARE_AUTH_TYPE="basic"
-export TUXCARE_USERNAME="admin"
-export TUXCARE_PASSWORD="your-password"
-
-# Or for API key
-export TUXCARE_AUTH_TYPE="api_key"
-export TUXCARE_API_KEY="your-api-key"
-export TUXCARE_HEADER_NAME="X-Api-Key"
-```
 
 ## MCP Client Configuration
 
@@ -216,60 +201,7 @@ export TUXCARE_HEADER_NAME="X-Api-Key"
 }
 ```
 
-#### Method 3: Using Environment Variables (Most Secure)
 
-**Basic Authentication:**
-```json
-{
-  "mcpServers": {
-    "tuxcare-eportal": {
-      "command": "npx",
-      "args": ["@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5"],
-      "env": {
-        "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
-        "TUXCARE_AUTH_TYPE": "basic",
-        "TUXCARE_USERNAME": "admin",
-        "TUXCARE_PASSWORD": "your-password"
-      }
-    }
-  }
-}
-```
-
-**API Key Authentication:**
-```json
-{
-  "mcpServers": {
-    "tuxcare-eportal": {
-      "command": "npx",
-      "args": ["@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5"],
-      "env": {
-        "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
-        "TUXCARE_AUTH_TYPE": "api_key",
-        "TUXCARE_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
-
-**API Key with Custom Header:**
-```json
-{
-  "mcpServers": {
-    "tuxcare-eportal": {
-      "command": "npx",
-      "args": ["@tuxcare-se/@tuxcare-se/tuxcare-eportal-mcp@1.0.5"],
-      "env": {
-        "TUXCARE_EPORTAL_URL": "https://your-eportal.com",
-        "TUXCARE_AUTH_TYPE": "api_key",
-        "TUXCARE_API_KEY": "your-api-key",
-        "TUXCARE_HEADER_NAME": "X-API-Key"
-      }
-    }
-  }
-}
-```
 
 ### Continue.dev Configuration
 
